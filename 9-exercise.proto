@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+import "proto-playground/9-exercise-imported-file.proto";
+
+// Same level messages
+message City {
+    string name = 1;
+    string zip_code = 2;
+    string country_name = 3;
+}
+
+message Street {
+    string street_name = 1;
+    string city = 2;
+}
+
+message Building {
+    string building_name = 1;
+    int32 building_number = 2;
+    string street = 3;
+}
+
+// Nested messages
+message City {
+    string name = 1;
+    string zip_code = 2;
+    string country_name = 3;
+
+    message Building {
+        string building_name = 1;
+        string building_number = 2;
+
+        message Street {
+            string street_name = 1;
+            string city = 2;
+        }
+        Street street = 3;
+    }
+    Building building = 4;
+}
+
+// Import packages
+message City {
+    string name = 1;
+    string zip_code = 2;
+    string country_name = 3;
+    helper.Building building = 4;
+    helper.Street street = 5;
+}
